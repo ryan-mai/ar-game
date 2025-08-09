@@ -6,7 +6,7 @@ import { Mesh, MeshBasicMaterial, RingGeometry } from "three";
 export function createPlaneMarker() {
   const planeMarkerMaterial = new MeshBasicMaterial({ color: 0xffffff });
   
-  const planeMarkerGeometry = new RingGeometry(0.14, 0.15, 16).rotateX(
+  const planeMarkerGeometry = new RingGeometry(0.07, 0.08, 32).rotateX(
     -Math.PI / 2,
   );
 

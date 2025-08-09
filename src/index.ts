@@ -26,16 +26,33 @@ function initializeXRApp() {
   // Add it to the DOM.
   document.body.appendChild( renderer.domElement );
 
-  // Create the AR button element, configure our XR session, and append it to the DOM.
-  document.body.appendChild(ARButton.createButton(
-    renderer,
-    { requiredFeatures: ["hit-test"] },
-  ));
+  // Get the XR UI container
+  const xrUIContainer = document.getElementById("xr-ui-container");
 
-  // Pass the renderer to the createScene-funtion.
+  // Create the AR button element, configure our XR session with DOM Overlay, and append it to the DOM.
+  const arButton = ARButton.createButton(
+    renderer,
+    { 
+      requiredFeatures: ["hit-test"],
+      optionalFeatures: xrUIContainer ? ["dom-overlay"] : [],
+      ...(xrUIContainer && { domOverlay: { root: xrUIContainer } })
+    },
+  );
+  arButton.textContent = "Enter";
+  arButton.style.bottom = "auto"; // Override default bottom positioning
+  arButton.style.top = "55%";     // Position at 65% from the top (lower down)
+  arButton.style.transform = "translateY(-50%)"; // Center vertically
+  arButton.style.fontSize = "13px"; // Keep original size
+  arButton.style.fontWeight = "normal"; // Keep original weight
+  arButton.style.color = "#000"; // Make text black for visibility
+  arButton.style.background = "rgba(147, 0, 227, 1)"; // Slightly more visible background
+  arButton.style.padding = "12px 6px"; // Keep original padding
+  document.body.appendChild(arButton);
+
+  // Pass the renderer to the createScene-function.
   createScene(renderer);
 
-  // Display a welcome message to the user.
+  // Display a welcome message to the user that will persist in AR mode.
   displayIntroductionMessage();
 };
 

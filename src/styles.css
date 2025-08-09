@@ -1,6 +1,9 @@
 body {
   font-family: sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 /* Hide canvas by default, it is not needed outside immersive-ar */
@@ -14,4 +17,32 @@ canvas {
 #ARButton {
   border: 1px solid gray !important;
   color: black !important;
+}
+
+/* Style the app root content */
+#app-root {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+
+/* Style the XR UI container for AR mode */
+#xr-ui-container {
+  pointer-events: none; /* Allow interaction with AR content beneath */
+}
+
+#xr-ui-container h1 {
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+#xr-ui-container p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Make sure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
 }
